@@ -79,9 +79,9 @@
   </head>
 
   <body>
-    <div class="home">
+    <div class="container">
 
-      <h1>DOOMMI</h1>
+      <h1>Inscription</h1>
       <p>Tous les champs sont obligatoires !</p>
 
       <p>&nbsp;</p>
