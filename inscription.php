@@ -3,22 +3,16 @@
     ini_set('display_errors','on');
     ini_set('display_startup_errors','on');
     error_reporting(E_ALL);
-
     // 0. Fonction permettant de traiter les éléments du formulaire (-> éviter injections SQL)
     include "traiterSaisies.php";
-
     // 1. Chargement des variables de connexion
     include "varConnexion.php";
-
     // Gestion des erreurs de saisie
     $erreur = false;
-
     //if (isset($_POST) AND count($_POST)) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
         // Gestion de la valeur de Submit
         $Submit = isset($_POST['Submit']) ? $_POST['Submit'] : '';
-
     /*
     ----
     Écrire CI-DESSOUS le traitement permettant d’enregistrer les données transmises par le formulaire
@@ -30,12 +24,10 @@
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage() . "<br/>";
     }
-
     // Variables
     $PseudoEtu = htmlspecialchars($_POST["PseudoEtu"]);
     $Password = htmlspecialchars($_POST["Password"]);
     $Email = htmlspecialchars($_POST["Email"]);
-
     // Réquête préparée INSERT INTO ETUDIANT
     try {
       $requete = $pdo->prepare("INSERT INTO ETUDIANT (PseudoEtu, Password, Email) VALUES (:PseudoEtu, :Password, :Email)");
@@ -44,8 +36,6 @@
                               'Email' => $Email
                               )
                         );
-
-
     } catch (Exception $e) {
       print "la requête ne fonctionne pas";
       // Saisies invalides
@@ -53,18 +43,14 @@
       $errSaisies =  "Erreur, la saisie est obligatoire !";
     }
 
-
     // 9. Redirige vers la page de liste des chauffeurs après l'enregistrement
     header("Location:TODO_list.html");
     exit();
-
         //if (!$erreur) {
           //header("Location:creerChauffeur.php?saved=".$id);
           //exit();
         //}
-
     }   // Fin du if ($_SERVER["REQUEST_METHOD"] == "POST")
-
 ?>
 
 <!DOCTYPE html>
@@ -79,9 +65,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="home">
 
-      <h1>Inscription</h1>
+      <h1>DOOMMI</h1>
       <p>Tous les champs sont obligatoires !</p>
 
       <p>&nbsp;</p>
@@ -100,23 +86,23 @@
     <form method="post" action="inscription.php" class="form-horizontal">
 
         <div class="control-group">
-            <label class="control-label" for="PseudoEtu">Pseudo</label>
+            <label class="control-label" for="PseudoEtu"></label>
             <div class="controls">
-                <input type="text" name="PseudoEtu" id="PseudoEtu" value="" placeholder="" autofocus="autofocus" />
+                <input type="text" name="PseudoEtu" id="PseudoEtu" value="" placeholder="identifiant" autofocus="autofocus" />
             </div>
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="Password">Password</label>
+            <label class="control-label" for="Password"></label>
             <div class="controls">
-                <input type="password" name="Password" id="Password" value="" placeholder="" />
+                <input type="password" name="Password" id="Password" value="" placeholder="mot de passe" />
             </div>
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="Email">Email</label>
+            <label class="control-label" for="Email"></label>
             <div class="controls">
-                <input type="text" name="Email" id="Email" value="" placeholder="" />
+                <input type="text" name="Email" id="Email" value="email" placeholder="" />
             </div>
         </div>
 
@@ -135,16 +121,12 @@
             </div>
         </div>
         <div class="control-group">
-            <div class="controls">
+            <div class="controls" id="btnins">
                 <input type="submit" name="Submit" value="Valider" class="btn btn-primary" />
             </div>
         </div>
 
     </form>
-
-      <!--<p>&nbsp;</p>-->
-
-      <hr />
 
       <footer>
         <p>&copy; DOOMI 2018</p>
